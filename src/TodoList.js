@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from "react";
 import './style.css';
+import TodoItem from "./TodoItem";
 // react 16 provides Fragment to replace outside div
 class TodoList extends Component {
   constructor(props){
@@ -7,7 +8,7 @@ class TodoList extends Component {
     super(props);
     this.state = {
       inputValue: '',
-      list: ['dd','ss']
+      list: []
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleButtonClick = this.handleButtonClick.bind(this)
@@ -38,15 +39,26 @@ class TodoList extends Component {
         {//fragment is also a comoponet
         }
         <div>
-        <input className = "input"
+        <label htmlFor="insertArea">Tasks</label>
+        <input id="insertArea" className = "input"
           value={this.state.inputValue}
           onChange={this.handleInputChange}
         /><button onClick={this.handleButtonClick}>submit</button>
         </div>
         <ul>
-          {this.state.list.map((item,index)=>{
-            return <li key={index} onClick={this.handleItemDelete.bind(this, index)}>{item}</li>
-          })}
+          {
+            this.state.list.map((item,index)=>{
+            return (
+              <div>
+               <TodoItem content={item}/>
+                {/*
+                <li key={index} 
+                onClick={this.handleItemDelete.bind(this, index)}>{item}</li>
+                */}
+              </div>
+              )
+            })
+          }
         </ul>
       </Fragment>
     )
