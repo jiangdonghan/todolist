@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
-import './style.css';
 import TodoItem from "./TodoItem";
+import './style.css';
 // react 16 provides Fragment to replace outside div
 class TodoList extends Component {
   constructor(props){
@@ -12,26 +12,55 @@ class TodoList extends Component {
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleButtonClick = this.handleButtonClick.bind(this)
+    this.handleItemDelete = this.handleItemDelete.bind(this)
   }
   handleInputChange (e) {
-    this.setState({
-      inputValue: e.target.value
-    })
+    const value = e.target.value
+    this.setState(() => ({
+      inputValue: value
+    }))
+    // this.setState({
+    //   inputValue: e.target.value
+    // })
   }
   handleButtonClick () {
-    this.setState({
-      list:[...this.state.list, this.state.inputValue],
+    //prevState等同于this.state
+    this.setState((prevState) => ({
+      list:[...prevState.list, prevState.inputValue],
       inputValue: ''
-    })
+    }))
+    // this.setState({
+    //   list:[...this.state.list, this.state.inputValue],
+    //   inputValue: ''
+    // })
   }
   handleItemDelete (index) {
     //immutable
     //states are not allowed to be changed
-    const list = [...this.state.list]
-    list.splice(index,1)
-    this.setState({
-      list: list  //or just list
+    
+    this.setState((prevState) => {
+      const list = [...prevState.list]
+      list.splice(index,1)
+      return {list}
     })
+    // this.setState({
+    //   list: list  //or just list
+    // })
+  }
+  getTodoItem () {
+    return this.state.list.map((item,index)=>{
+      return (
+        <div  key={index}>
+         <TodoItem content={item} index={index}
+         deleteItem={this.handleItemDelete}/>
+          {/*
+          <li key={index} 
+          onClick={this.handleItemDelete.bind(this, index)}>{item}</li>
+          */}
+        </div>
+        )
+      })
+    
   }
   render() {
     return (
@@ -46,19 +75,7 @@ class TodoList extends Component {
         /><button onClick={this.handleButtonClick}>submit</button>
         </div>
         <ul>
-          {
-            this.state.list.map((item,index)=>{
-            return (
-              <div>
-               <TodoItem content={item}/>
-                {/*
-                <li key={index} 
-                onClick={this.handleItemDelete.bind(this, index)}>{item}</li>
-                */}
-              </div>
-              )
-            })
-          }
+          {this.getTodoItem()}
         </ul>
       </Fragment>
     )
