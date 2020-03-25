@@ -6,6 +6,8 @@ class TodoList extends Component {
   constructor(props){
     //super调用父类的构造函数
     super(props);
+    //当组件的state或者props发生改变的时候，render函数会重新执行
+    //父组件的render被执行时，子组件render也会重新执行一次
     this.state = {
       inputValue: '',
       list: []
