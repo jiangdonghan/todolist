@@ -68,7 +68,28 @@ class TodoList extends Component {
       })
     
   }
+  componentWillMount(){
+    console.log('componentWillMount')
+  }
+  componentDidMount(){
+    console.log("componentdidmount")
+  }
+  shouldComponentUpdate(){
+    console.log("shouldComponentUpdate")
+    return true
+  }
+  componentWillUpdate(){
+    console.log('componentWillUpdate')
+  }
+  componentDidUpdate(){
+    console.log('componentDidUpdate')
+  }
+  componentWillReceiveProps(){
+    console.log('componentWillReceiveProps')
+  }
+
   render() {
+    console.log('render')
     return (
       <Fragment>
         {//fragment is also a comoponet

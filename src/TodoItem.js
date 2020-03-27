@@ -11,6 +11,9 @@ class TodoItem extends Component {
     const { deleteItem, index } = this.props;
     deleteItem(index)
   }
+  componentWillUnmount(){
+    console.log('componentWillUnmount')
+  }
   render() {
     const {test, content} = this.props
     return (<div onClick={this.handleClick}>
