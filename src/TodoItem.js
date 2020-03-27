@@ -14,7 +14,20 @@ class TodoItem extends Component {
   componentWillUnmount(){
     console.log('componentWillUnmount')
   }
+  //content改变与否 提升性能 减少渲染次数
+  shouldComponentUpdate(nextProps,nextState){
+    if(nextProps.content !== this.props.content){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  //ajax请求都放在didmount里
+  componentDidMount(){
+    
+  }
   render() {
+    console.log('child render')
     const {test, content} = this.props
     return (<div onClick={this.handleClick}>
     {test}-{content}

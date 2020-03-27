@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from "react";
 import TodoItem from "./TodoItem";
+import axios from "axios"
 import './style.css';
 // react 16 provides Fragment to replace outside div
 class TodoList extends Component {
@@ -53,6 +54,11 @@ class TodoList extends Component {
     //   list: list  //or just list
     // })
   }
+  componentDidMount(){
+    axios.get('xx')
+    .then(()=>{alert('succ')})
+    .catch(()=>{alert('error')})
+  }
   getTodoItem () {
     return this.state.list.map((item,index)=>{
       return (
@@ -68,25 +74,25 @@ class TodoList extends Component {
       })
     
   }
-  componentWillMount(){
-    console.log('componentWillMount')
-  }
-  componentDidMount(){
-    console.log("componentdidmount")
-  }
-  shouldComponentUpdate(){
-    console.log("shouldComponentUpdate")
-    return true
-  }
-  componentWillUpdate(){
-    console.log('componentWillUpdate')
-  }
-  componentDidUpdate(){
-    console.log('componentDidUpdate')
-  }
-  componentWillReceiveProps(){
-    console.log('componentWillReceiveProps')
-  }
+  // componentWillMount(){
+  //   console.log('componentWillMount')
+  // }
+  // componentDidMount(){
+  //   console.log("componentdidmount")
+  // }
+  // shouldComponentUpdate(){
+  //   console.log("shouldComponentUpdate")
+  //   return true
+  // }
+  // componentWillUpdate(){
+  //   console.log('componentWillUpdate')
+  // }
+  // componentDidUpdate(){
+  //   console.log('componentDidUpdate')
+  // }
+  // componentWillReceiveProps(){
+  //   console.log('componentWillReceiveProps')
+  // }
 
   render() {
     console.log('render')
