@@ -23,7 +23,7 @@ class TodoItem extends Component {
 TodoItem.propTypes = {
   //isrequired会警告 即便test不存在
   test: PropTypes.string,
-  content: PropTypes.string,//PropTypes.Arrayof(..,..)
+  content: PropTypes.string,//PropTypes.Arrayof(..,..) 意思是content必须是数组 数组里的type可以是。。。。 oneOfType([..,..])
   deleteItem: PropTypes.func,
   index: PropTypes.number
 }

@@ -17,7 +17,8 @@ class TodoList extends Component {
     this.handleItemDelete = this.handleItemDelete.bind(this)
   }
   handleInputChange (e) {
-    const value = e.target.value
+    console.log(e.target)
+    const value = this.input.value
     this.setState(() => ({
       inputValue: value
     }))
@@ -30,7 +31,10 @@ class TodoList extends Component {
     this.setState((prevState) => ({
       list:[...prevState.list, prevState.inputValue],
       inputValue: ''
-    }))
+    }),() => {
+      console.log(this.ul.querySelectorAll('div').length)//写在这就不会有问题
+    });
+    //console.log(this.ul.querySelectorAll('div').length)//因为setstate是异步。所以可能在setstate之前
     // this.setState({
     //   list:[...this.state.list, this.state.inputValue],
     //   inputValue: ''
@@ -74,9 +78,10 @@ class TodoList extends Component {
         <input id="insertArea" className = "input"
           value={this.state.inputValue}
           onChange={this.handleInputChange}
+          ref={(input) => this.input = input}//this.input指向input框的dom 不建议但是 建议用数据驱动的方式
         /><button onClick={this.handleButtonClick}>submit</button>
         </div>
-        <ul>
+        <ul ref={(ul) => {this.ul = ul}}>
           {this.getTodoItem()}
         </ul>
       </Fragment>
