@@ -10,6 +10,9 @@
 6.数据+ 模板 生成新的虚拟dom（极大的提升了性能 js对象性能损耗极低）
 ['div',{id: 'abc},['span'],{},'bye']]
 7.比较原始虚拟dom和新的虚拟dom的区别，找到区别是span中的内容（极大的提升了性能）
+
+Diff, Differernce 
+
 8.直接操作dom，改变span中的内容
 
 所以render里的jsx不是dom
@@ -21,3 +24,10 @@ React.createElement更接近底层
 1.性能提升了
 2.使得跨段应用得以实现，react native
 
+## diff算法
+setState是异步，为了提高react的性能，可以把多次setstate结合成一次
+
+* 同级比较
+减少了算法上的性能消耗
+
+使用一个稳定的做key值
