@@ -55,8 +55,13 @@ class TodoList extends Component {
     // })
   }
   componentDidMount(){
-    axios.get('xx')
-    .then(()=>{alert('succ')})
+    axios.get('/api/json')
+    .then((res)=>{
+      console.log(res)
+      this.setState(() => ({
+        list: [...res.data]
+      }))
+    })
     .catch(()=>{alert('error')})
   }
   getTodoItem () {
