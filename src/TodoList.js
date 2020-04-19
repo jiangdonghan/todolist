@@ -22,6 +22,7 @@ class TodoList extends Component {
     handleItemDelete = {this.handleItemDelete}
     />
   }
+  //最好拆分异步函数
   componentDidMount() {
     // axios.get('https://www.easy-mock.com/mock/5e7f7d5b7b3f3a3656470e38/example/api/json').then((res)=>{
     //   const data = res.data

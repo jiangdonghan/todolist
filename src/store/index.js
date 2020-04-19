@@ -3,6 +3,7 @@ import reducer from './reducer'
 import thunk from 'redux-thunk';
 
 //reducer传给store
+//中间件就是对dispatch一个省级，在action和reducer中
 const composeEnhancers =
   typeof window === 'object' &&
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?   
