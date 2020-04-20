@@ -1,7 +1,9 @@
 import { createStore, applyMiddleware, compose} from 'redux'
+import createSagaMiddleware from 'redux-saga'
+import TodoSagas from './sagas'
 import reducer from './reducer'
-import thunk from 'redux-thunk';
 
+const sagaMiddleware = createSagaMiddleware()
 //reducer传给store
 //中间件就是对dispatch一个省级，在action和reducer中
 const composeEnhancers =
@@ -11,12 +13,12 @@ const composeEnhancers =
       // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
     }) : compose;
 const enhancer = composeEnhancers(
-  applyMiddleware(thunk),
   // other store enhancers if any
+  applyMiddleware(sagaMiddleware)
 );
 const store = createStore(
   reducer,
   enhancer
   );
-
+sagaMiddleware.run(TodoSagas)
 export default store

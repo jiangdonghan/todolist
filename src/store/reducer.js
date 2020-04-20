@@ -27,7 +27,6 @@ export default (state = defaultState, action) => {
   if (action.type === INIT_LIST_ACTION){
     const newState = JSON.parse(JSON.stringify(state));
     const data = action.data.data.projects
-    console.log(data)
     for(let i = 0;i<data.length;i++){
       newState.list.push(data[i]['address'])
     }

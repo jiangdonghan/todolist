@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import store from './store/index.js';
-import {getInputChangeAction, getHandleBtnClickAction,gethandleItemDeleteAction, getTodoList} from './store/actionCreators'
+import axios from 'axios'
+import {getInputChangeAction, getHandleBtnClickAction,gethandleItemDeleteAction, getInitList} from './store/actionCreators'
 import TodoListUI from './TodoListUI'
 //拆分出actiontype 避免bug
 //关注整个组建的业务逻辑 容器组件
@@ -29,7 +30,7 @@ class TodoList extends Component {
     //   const action = initListAction(data)
     //   store.dispatch(action)
     // })
-    const action = getTodoList();
+    const action = getInitList();
     store.dispatch(action)
   }
   handleInputChange(e) {
